@@ -1,36 +1,26 @@
 pipeline {
     agent any
-
     stages {
-        stage('Preparing gradlew') {
-            steps {
-                sh 'chmod +x gradlew'
-            }
-        }
-        stage('test') {
+        stage ('Test') {
             steps {
                 sh './gradlew test'
             }
         }
-        stage('build') {
+        stage ('Build') {
             steps {
                 sh './gradlew build'
             }
         }
-        stage('Release') {
+        stage ('Deploy/Show Output'){
             steps {
-                sh 'token="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"'
-                sh 'tag=$(git describe --tags)'
-                sh 'message="$(git for-each-ref refs/tags/$tag --format=\'%(contents)\')"'
-                sh 'name=$(echo "$message" | head -n1)'
-                sh 'description=$(echo "$message" | tail -n +3)'
-                sh 'release=$(curl -XPOST -H "Authorization:token $token" --data \'{"tag_name": "$tag", "target_commitish": "main", "name": "$name", "body": "$description", "draft": false, "prerelease": false}\' "https://api.github.com/repos/YoussF/caesar-cipher/releases)"'
-            }
+                echo 'Deploying/Outputing .....'
+                sh java -jar build/libs/caesar-cipher.jar
+            }  
         }
-        stage('Deploy') {
-            steps {
-                echo 'Deploying....'
-            }
+   }
+   post {
+        always {
+            archiveArtifacts artifacts: 'build/libs/caesar-cipher.jar', onlyIfSuccessful: true
         }
     }
 }
