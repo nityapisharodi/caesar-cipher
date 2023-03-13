@@ -17,6 +17,18 @@ pipeline {
                 sh 'java -jar build/libs/caesar-cipher.jar'
             }  
         }
+        stage ('Release') {
+            steps {
+                script{
+                    sh 'token="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"'
+                    sh 'cp build/libs/caesar-cipher.jar caesar-cipher-r1.jar'
+                    sh 'git add caesar-cipher-r1.jar'
+                    sh 'git commit caesar-cipher-r1.jar -m "New release"'
+                    sh 'git push caesar-cipher-r1.jar https://github.com/nityapisharodi/caesar-cipher.git main '
+                }
+
+            }
+        }
    }
    post {
         always {
