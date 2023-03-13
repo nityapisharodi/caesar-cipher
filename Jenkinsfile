@@ -20,9 +20,9 @@ pipeline {
         stage ('Release') {
             steps {
                 script{
-                    sh 'token="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"'
                     sh 'user="nityapisharodi"'
                     sh 'repo="Project_release_repo.git"'
+                    sh 'token="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"'
                     sh 'curl --data '{"tag_name":"v1.0.0","target_commitish":"main","name":"Release v1.0.0","body":"First release of caesar-cipher","draft":false,"prerelease":false}' https://api.github.com/repos/"$user"/"$repo"/releases?access_token="$token"'
                 }
 
