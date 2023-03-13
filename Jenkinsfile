@@ -21,10 +21,9 @@ pipeline {
             steps {
                 script{
                     sh 'token="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"'
-                    sh 'cp build/libs/caesar-cipher.jar caesar-cipher-r1.jar'
-                    sh 'git add caesar-cipher-r1.jar'
-                    sh 'git commit caesar-cipher-r1.jar -m "New release"'
-                    sh 'git push https://"$token"@github.com/nityapisharodi/Project_release_repo.git main'
+                    sh 'user="nityapisharodi"'
+                    sh 'repo="Project_release_repo.git"'
+                    sh 'curl --data '{"tag_name":"v1.0.0","target_commitish":"main","name":"Release v1.0.0","body":"First release of caesar-cipher","draft":false,"prerelease":false}' https://api.github.com/repos/"$user"/"$repo"/releases?access_token="$token"'
                 }
 
             }
