@@ -23,7 +23,7 @@ pipeline {
                     sh 'user=nityapisharodi'
                     sh 'repo=caesar-cipher'
                     sh 'release_repo=Project_release_repo'
-                    sh 'token="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"'
+                    sh 'token="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"'
                    
                     sh 'Release_Details=$(curl -XPOST -H "Authorization:token $token" --data \'{"tag_name":"v2.0.1","target_commitish":"main","name":"Release v1.0.0","body":"First release of caesar-cipher","draft":false,"prerelease":false}\' https://api.github.com/repos/nityapisharodi/caesar-cipher/releases)'
                     sh 'git add build/libs/caesar-cipher.jar'
