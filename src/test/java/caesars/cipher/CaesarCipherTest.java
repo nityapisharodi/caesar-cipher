@@ -10,7 +10,7 @@ class CaesarCipherTest {
 	
 	@Test
 	void testCipheredMessageWithOffsetOf1() {
-		assertEquals("jo dpef xf usvtu", caesarCipher.cipher("in code we will trust", 1));
+		assertEquals("jo dpef xf usvtu", caesarCipher.cipher("in code we trust", 1));
 	}
 
 	@Test
