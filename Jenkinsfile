@@ -24,7 +24,7 @@ pipeline {
                     sh 'cp build/libs/caesar-cipher.jar caesar-cipher-r1.jar'
                     sh 'git add caesar-cipher-r1.jar'
                     sh 'git commit caesar-cipher-r1.jar -m "New release"'
-                    sh 'git push caesar-cipher-r1.jar https://github.com/nityapisharodi/caesar-cipher.git main '
+                    sh 'git push https://github.com/nityapisharodi/caesar-cipher.git main'
                 }
 
             }
