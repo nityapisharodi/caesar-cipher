@@ -21,7 +21,7 @@ pipeline {
         stage ('Release') {
             steps {
 
-                withCredentials([usernamePassword(credentialId: 'jenkins-pipeline', usernameVariable: 'GITHUB_USERNAME', passwordVariable: 'GITHUB_TOKEN')])
+                withCredentials([string(credentialsId: 'jenkins-pipeline', variable: 'GITHUB_TOKEN'))])
                 {
                     sh 'git config credentials.helper "credential-helper.sh"'  
                     sh 'tag=$(git describe --tag)'
