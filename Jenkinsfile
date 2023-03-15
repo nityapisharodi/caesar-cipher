@@ -23,9 +23,9 @@ pipeline {
 
                 withCredentials([string(credentialsId: 'my_github_token', variable: 'GITHUB_TOKEN')])
                 {
-                    //sh 'git fetch --tags origin'
+        
                     sh 'tag=$(git describe --tags | awk -F - \'{print $1}\')'
-                    sh 'Release=$(curl -XPOST -H "Authorization: token $GITHUB_TOKEN" --data \'{"tag_name":\'${tag}\',"target_commitish":"main","name":"Release Initial","body":"First release of caesar-cipher","draft":false,"prerelease":false}\' https://api.github.com/repos/nityapisharodi/caesar-cipher/releases)'
+                    sh 'Release=$(curl -XPOST -H "Authorization: token $GITHUB_TOKEN" --data \'{"tag_name":\"${tag}\","target_commitish":"main","name":"Release Initial","body":"First release of caesar-cipher","draft":false,"prerelease":false}\' https://api.github.com/repos/nityapisharodi/caesar-cipher/releases)'
 
                 }
             }
