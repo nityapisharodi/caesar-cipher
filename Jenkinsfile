@@ -43,7 +43,7 @@ pipeline {
                             --header "Content-Type: application/octet-stream" \
                             --data-binary "build/libs/caesar-cipher.jar" https://uploads.github.com/repos/nityapisharodi/caesar-cipher/releases/${RELEASE}/assets?name=caesar-cipher.jar
                         """,
-                    returnStdout: false).trim()    
+                    returnStdout: false)   
 
                     
                 }
