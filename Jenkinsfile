@@ -27,8 +27,9 @@ pipeline {
                 script {
                     TAG = sh (
                     script: 'git describe --tags | awk -F - \'{print $1}\'',
-                    returnStatus: true) == 0
+                    returnStdout: true).trim()
                     echo "Tag value: ${TAG}"
+                
                     RELEASE = sh (script: """
                     curl -X POST \
                         -H "Authorization: token ${GITHUB_TOKEN}" \
