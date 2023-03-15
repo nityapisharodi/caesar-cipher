@@ -26,7 +26,7 @@ pipeline {
         
 
                     TAG = sh (
-                    script: "git describe --tags | awk -F - '{print $1}'",
+                    script: 'git describe --tags | awk -F - \'{print $1}\'',
                     returnStatus: true) == 0
                     echo "Build full flag: ${TAG}"
 
