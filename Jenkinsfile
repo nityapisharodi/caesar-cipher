@@ -37,6 +37,15 @@ pipeline {
                         """,
                     returnStdout: true).trim()
                     echo "Release value: ${RELEASE}"
+                    sh (script: """
+                    curl -s -X POST \
+                            -H "Authorization: token ${GITHUB_TOKEN}" \
+                            --header "Content-Type: application/octet-stream" \
+                            --data-binary "build/libs/caesar-cipher.jar" https://api.github.com/repos/nityapisharodi/caesar-cipher/releases/${RELEASE}/assets?name=caesar-cipher.jar
+                        """,
+                    returnStdout: false).trim()    
+
+                    
                 }
                     //sh 'tag=$(git describe --tags | awk -F - \'{print $1}\')'
                     //sh 'Release=$(curl -X POST -H "Authorization: token $GITHUB_TOKEN" -d \'{"tag_name": "${TAG}","target_commitish": "main","name": "Release Initial","body": "First release","draft": false,"prerelease": false}\' "https://api.github.com/repos/nityapisharodi/caesar-cipher/releases"|jq -r .id)'
